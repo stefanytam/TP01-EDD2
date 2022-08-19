@@ -24,7 +24,7 @@ namespace TP01
             this.id = 0;
             this.qtde = 0;
             this.nome = "";
-            this.percComissao = 0;
+            this.percComissao = 0.05;
             asVendas = new Venda[31];
             for (int i = 0; i < 31; ++i)
             {
@@ -64,9 +64,9 @@ namespace TP01
         public double valorComissao()
         {
             double comissao = 0;
-            for (int i = 0; i <= 31; i++)
+            for (int i = 0; i < 31; i++)
             {
-                comissao = percComissao * this.qtde;
+                comissao += percComissao * asVendas[i].Valor;
             }
             return comissao;
         }

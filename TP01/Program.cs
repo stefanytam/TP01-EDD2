@@ -10,6 +10,7 @@ namespace TP01
             Venda v = new Venda(4, 120);
             vendedor.registrarVenda(1, v);
             Console.WriteLine(vendedor.valorVendas());
+            Console.WriteLine(vendedor.valorComissao());
             Console.ReadKey();
         }
     }
