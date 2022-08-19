@@ -6,7 +6,11 @@ namespace TP01
     {
         static void Main(string[] args)
         {
-           
+            Vendedor vendedor = new Vendedor();
+            Venda v = new Venda(4, 120);
+            vendedor.registrarVenda(1, v);
+            Console.WriteLine(vendedor.valorVendas());
+            Console.ReadKey();
         }
     }
 }
