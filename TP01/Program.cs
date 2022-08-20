@@ -6,11 +6,12 @@ namespace TP01
     {
         static void Main(string[] args)
         {
-            Vendedor vendedor = new Vendedor();
-            Venda v = new Venda(4, 120);
-            vendedor.registrarVenda(1, v);
-            Console.WriteLine(vendedor.valorVendas());
-            Console.WriteLine(vendedor.valorComissao());
+            
+            Vendedores meusVendedores = new Vendedores(5);
+            meusVendedores.addVendedor(new Vendedor(1, 1, "Lola", 0.10, new Venda(1,100)));
+            Console.WriteLine(meusVendedores.mostrar());
+            Console.WriteLine("Valor vendas: {0}", meusVendedores.valorVendas());
+            Console.WriteLine("Valor comissão: {0}", meusVendedores.valorComissao());
             Console.ReadKey();
         }
     }

@@ -11,20 +11,23 @@ namespace TP01
         private double percComissao;
         private Venda[] asVendas =new Venda[31];
 
-        public Vendedor(int id, int qtde, string nome, double percComissao, Venda[] asVendas)
+        public Vendedor(int id, int qtde, string nome, double percComissao,  Venda v)
         {
             this.id = id;
             this.qtde = qtde;
             this.nome = nome;
             this.percComissao = percComissao;
-            this.asVendas = asVendas;
+            for (int i = 0; i < 31; ++i)
+            {
+                asVendas[i] = v;
+            }
         }
         public Vendedor()
         {
             this.id = 0;
             this.qtde = 0;
             this.nome = "";
-            this.percComissao = 0.05;
+            this.percComissao = 0.10;
             asVendas = new Venda[31];
             for (int i = 0; i < 31; ++i)
             {
@@ -56,7 +59,7 @@ namespace TP01
             double vlr = 0;
             for(int i = 0; i < 31; i++)
             {
-                vlr += asVendas[i].Valor * this.qtde;
+                vlr = asVendas[i].Valor * this.qtde;
             }
             return vlr;
         }
@@ -66,9 +69,14 @@ namespace TP01
             double comissao = 0;
             for (int i = 0; i < 31; i++)
             {
-                comissao += percComissao * asVendas[i].Valor;
+                comissao = percComissao * asVendas[i].Valor;
             }
             return comissao;
+        }
+
+        public override string ToString()
+        {
+            return this.id.ToString() + " - " + this.nome + '\n';
         }
 
     }
