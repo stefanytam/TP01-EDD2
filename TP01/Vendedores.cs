@@ -14,9 +14,9 @@ namespace TP01
         public int Qtde { get => qtde; }
         public Vendedor[] OsVendedores { get => osVendedores; }
 
-        public Vendedores(int max)
+        public Vendedores()
         {
-            this.max = max;
+            this.max = 10;
             this.qtde = 0;
             osVendedores = new Vendedor[this.max];
             for (int i = 0; i < this.max; ++i)
@@ -65,12 +65,12 @@ namespace TP01
         {
             bool podeRemover;
             int i = 0;
-            while (i < this.max && this.osVendedores[this.qtde]!=v)
+            while (i < this.max && !this.osVendedores[i].Equals(v))
             {
                 i++;
             }
             podeRemover = (i < this.max);
-            if (podeRemover)
+            if (podeRemover && osVendedores[i].AsVendas[i].Qtde==0)
             {
                 while (i < this.max - 1)
                 {

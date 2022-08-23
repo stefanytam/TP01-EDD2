@@ -10,7 +10,7 @@ namespace TP01
         private string nome;
         private double percComissao;
         private Venda[] asVendas =new Venda[31];
-
+        
         public Vendedor(int id, int qtde, string nome, double percComissao,  Venda v)
         {
             this.id = id;
@@ -22,6 +22,8 @@ namespace TP01
                 asVendas[i] = v;
             }
         }
+       
+   
         public Vendedor()
         {
             this.id = 0;
@@ -77,6 +79,11 @@ namespace TP01
         public override string ToString()
         {
             return this.id.ToString() + " - " + this.nome + '\n';
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this.id.Equals(((Vendedor)obj).id);
         }
 
     }
