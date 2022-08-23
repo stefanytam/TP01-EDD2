@@ -10,38 +10,44 @@ namespace TP01
         private string nome;
         private double percComissao;
         private Venda[] asVendas =new Venda[31];
-        
-        public Vendedor(int id, int qtde, string nome, double percComissao,  Venda v)
-        {
-            this.id = id;
-            this.qtde = qtde;
-            this.nome = nome;
-            this.percComissao = percComissao;
-            for (int i = 0; i < 31; ++i)
-            {
-                asVendas[i] = v;
-            }
-        }
-       
-   
-        public Vendedor()
-        {
-            this.id = 0;
-            this.qtde = 0;
-            this.nome = "";
-            this.percComissao = 0.10;
-            asVendas = new Venda[31];
-            for (int i = 0; i < 31; ++i)
-            {
-                asVendas[i] = new Venda();
-            }
-        }
+
         public int Id { get => id; set => id = value; }
         public int Qtde { get => qtde; set => qtde = value; }
         public string Nome { get => nome; set => nome = value; }
         public double PercComissao { get => percComissao; set => percComissao = value; }
         public Venda[] AsVendas { get => asVendas; set => asVendas = value; }
 
+        public Vendedor(int id,  string nome, double percComissao,  Venda v)
+        {
+            this.id = id;
+            this.nome = nome;
+            this.percComissao = percComissao;
+            for (int i = 0; i < 31; ++i)
+            {
+               
+                asVendas[i] = v;
+                this.qtde = asVendas[i].Qtde;
+            }
+        }
+        public Vendedor (int id) 
+        {
+            this.id = id;
+        }
+
+        public Vendedor()
+        {
+            this.id = 0;
+            this.nome = "";
+            this.percComissao = 0.10;
+            asVendas = new Venda[31];
+            for (int i = 0; i < 31; ++i)
+            {
+
+                asVendas[i] = new Venda();
+                qtde = asVendas[i].Qtde;
+            }
+        }
+    
 
 
         public void registrarVenda(int dia, Venda venda)
