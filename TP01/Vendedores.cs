@@ -24,7 +24,6 @@ namespace TP01
                 osVendedores[i] = new Vendedor();
             }
         }
-
         public string mostrar()
         {
             string s = "";
@@ -50,11 +49,11 @@ namespace TP01
         {
             Vendedor vendedorAchado = new Vendedor();
             int i = 0;
-            while (i < this.max && this.osVendedores[i].Id!=v.Id)
+            while (i < this.max && this.osVendedores[i].Id != v.Id)
             {
                 i++;
             }
-            if (i<this.max)
+            if (i < this.max)
             {
                 vendedorAchado = this.osVendedores[i];
             }
@@ -70,7 +69,7 @@ namespace TP01
                 i++;
             }
             podeRemover = (i < this.max);
-            if (podeRemover && osVendedores[i].AsVendas[i].Qtde==0)
+            if (podeRemover)
             {
                 while (i < this.max - 1)
                 {
@@ -84,23 +83,23 @@ namespace TP01
         }
         public double valorVendas()
         {
-            double vlr = 0;
-            for (int i = 0; i < max; i++)
+            double somaVendas = 0;
+            foreach (var vendedor in this.osVendedores)
             {
-                vlr += osVendedores[i].valorVendas();
+                somaVendas += vendedor.valorVendas();
             }
-            return vlr;
-        }
 
+            return somaVendas;
+        }
         public double valorComissao()
         {
-            double comissao = 0;
-            for (int i = 0; i < max; i++)
+            double somaComissao = 0;
+            foreach (var vendedor in this.osVendedores)
             {
-                comissao += osVendedores[i].valorComissao();
+                somaComissao += vendedor.valorComissao();
             }
-            return comissao;
-        }
 
+            return somaComissao;
+        }
     }
 }

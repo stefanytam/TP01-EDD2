@@ -9,11 +9,10 @@ namespace TP01
             
             Vendedores meusVendedores = new Vendedores();
             string nome;
-            int qtd;
-            double valor, perc;
+            double perc;
 
             int id=0, op;
-            int diaR,qtdR;
+            int diaR;
 
             do
             {
@@ -34,50 +33,75 @@ namespace TP01
                     case 1:
                         {
                             id++;
-                            Console.WriteLine("Nome: ");
+                            Console.Write("Nome: ");
                             nome = Console.ReadLine();
-                            Console.WriteLine("Quantidade de vendas: ");
-                            qtd = int.Parse(Console.ReadLine());
-                            Console.WriteLine("Valor de vendas: ");
-                            valor = double.Parse(Console.ReadLine());
-                            Console.WriteLine("Comissão de vendas: ");
+                            Console.Write("Comissão de vendas: ");
                             perc = double.Parse(Console.ReadLine());
-                            meusVendedores.addVendedor(new Vendedor(id,nome,perc,new Venda(qtd,valor)));
+                            meusVendedores.addVendedor(new Vendedor(id,nome,perc,new Venda()));
                             break;
                         }
                     case 2:
                         {
                             int idPesquisa;
-                            Console.WriteLine("ID do vendedor: ");
-                            idPesquisa=int.Parse(Console.ReadLine());
+                            Console.Write("ID do vendedor: ");
+                            idPesquisa = int.Parse(Console.ReadLine());
+
                             Console.WriteLine(meusVendedores.searchVendedor(new Vendedor(id)));
-                           
+                            for (int i = 0; i <meusVendedores.OsVendedores[idPesquisa-1].AsVendas.Length; i++)
+                            {
+                               
+                                if (meusVendedores.OsVendedores[idPesquisa-1].AsVendas[i].Qtde> 0)
+                                {
+                                    Console.WriteLine("Dia {0} - {1}",i+1,meusVendedores.OsVendedores[idPesquisa - 1].AsVendas[i].ToString());
+                                }
+                            }
+                            
                             break;
                         }
                     case 3:
                         {
                             int idDel;
-                            Console.WriteLine("ID do vendedor: ");
+                            Console.Write("ID do vendedor: ");
                             idDel = int.Parse(Console.ReadLine());
-                            meusVendedores.delVendedor(new Vendedor(id));
+                            if (meusVendedores.OsVendedores[idDel-1].valorVendas() > 0)
+                            {
+                                Console.WriteLine("Vendedor não pode ser excluído");
+                            }
+                            else
+                            {
+                                meusVendedores.delVendedor(new Vendedor(id));
+                            }
                             break;
                         }
                     case 4:
                         {
-                            int idR;
-                            Console.WriteLine("ID do vendedor: ");
-                            idR = int.Parse(Console.ReadLine());
-                            Console.WriteLine("Quantidade: ");
-                            qtdR = int.Parse(Console.ReadLine());
-                            Console.WriteLine("Dia");
+                            int idr;
+                            Venda venda = new Venda();
+                           Console.Write("Digite o id do vendedor: ");
+                            idr = int.Parse(Console.ReadLine());
+
+                            Console.Write("Digite o dia da venda: ");
                             diaR = int.Parse(Console.ReadLine());
-                            Venda ve = meusVendedores.OsVendedores[idR].AsVendas[idR];
-                            meusVendedores.OsVendedores[idR].registrarVenda(diaR, ve);
+
+                            Console.Write("Vendas do dia: ");
+                            venda.Qtde = int.Parse(Console.ReadLine());
+
+                            Console.Write("Valor total de vendas: ");
+                            venda.Valor = double.Parse(Console.ReadLine());
+
+                            meusVendedores.OsVendedores[idr-1].registrarVenda(diaR, venda);
+
                             break;
                         }
                     case 5:
                         {
-                            Console.WriteLine(meusVendedores.mostrar());
+                            foreach (var vendedor in meusVendedores.OsVendedores)
+                            {
+                                if (vendedor.Id != 0)
+                                {
+                                    Console.WriteLine(vendedor.ToString());
+                                }
+                            }
                             break;
                         }
                     default:

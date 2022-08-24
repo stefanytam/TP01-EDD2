@@ -31,6 +31,9 @@ namespace TP01
             return media;
         }
 
-
+        public override string ToString()
+        {
+            return $"Valor: {this.Valor:C} - Qtde: {this.Qtde}";
+        }
     }
 }
